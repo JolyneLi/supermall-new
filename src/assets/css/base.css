@@ -1,0 +1,22 @@
+@import "normalize.css";
+
+
+/*root => 获取根元素html*/
+
+:root {
+    --color-text: #666;
+    --color-higt-text: #ff5777;
+    --color-tint:#ff8198;
+    --color-background:#fff;
+    --font-size:14px
+}
+
+*,
+::before,
+::after{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+*{touch-action: none;}

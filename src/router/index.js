@@ -1,23 +1,45 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 
 Vue.use(VueRouter);
 
+const Home = () => import("../views/home/Home");
+const Cate = () => import("../views/Cate");
+const Profile = () => import("../views/Profile");
+const Category = () => import("../views/Category/Category");
+const Detail = () => import("../views/detail/Detail");
+
+// vue报错:NavigationDuplicated 的解决方案 重复触发了同一个路由
+const originalPush = VueRouter.prototype.push;
+
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch((err) => err);
+};
+
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: "",
+    redirect: "/home",
+  },
+  {
+    path: "/home",
     component: Home,
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
+    path: "/cate",
+    component: Cate,
+  },
+  {
+    path: "/profile",
+    component: Profile,
+  },
+  {
+    path: "/category",
+    component: Category,
+  },
+  {
+    path: "/detail/:iid",
+    component: Detail,
   },
 ];
 
