@@ -47,6 +47,7 @@ export default {
     // this.initScroll();
     this.bs = new Bscroll(this.$refs.wrapper, {
       observeDOM: true,
+      observeImage: true,
       click: true,
       probeType: this.activeprobetype,
       pullUpLoad: this.ActiveUpLoad,

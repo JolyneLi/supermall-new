@@ -3,7 +3,12 @@
     <nav-bar>
       <div slot="left" class="icon-fanhui" @click="back"></div>
       <div slot="mid" class="aaa">
-        <div v-for="(item, i) in navdata" :key="i">
+        <div
+          v-for="(item, i) in navdata"
+          :key="i"
+          @click="navdatabotton(i)"
+          :class="{ avtiveclass: count == i }"
+        >
           {{ item }}
         </div>
       </div>
@@ -20,12 +25,17 @@ export default {
   },
   data() {
     return {
-      navdata: ["精选", "精选", "精选", "精选"],
+      navdata: ["商品", "参数", "评论", "推荐"],
+      count: 0,
     };
   },
   methods: {
     back() {
       this.$router.back("/home");
+    },
+    navdatabotton(i) {
+      console.log(i);
+      this.count = i;
     },
   },
 };
@@ -37,6 +47,9 @@ export default {
 }
 .aaa div {
   flex: 1;
+}
+.avtiveclass {
+  color: #ff8198;
 }
 /*.icon-fanhui{*/
 /*  position: relative;*/

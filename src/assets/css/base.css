@@ -20,3 +20,8 @@
 }
 
 *{touch-action: none;}
+
+a{
+    text-decoration: none;
+    color:#333
+}
