@@ -9,7 +9,9 @@
 <script>
 import Bscroll from "better-scroll";
 import ObserveDom from "@better-scroll/observe-dom";
+// import Pullup from '@better-scroll/pull-up'
 Bscroll.use(ObserveDom);
+// Bscroll.use(Pullup)
 
 export default {
   name: "InScroll",
@@ -22,7 +24,7 @@ export default {
     // 需不需要上拉加载更多
     ActiveUpLoad: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
 
@@ -40,11 +42,6 @@ export default {
   // });
 
   mounted() {
-    // setTimeout(() => {
-    //
-    // }, 100);
-
-    // this.initScroll();
     this.bs = new Bscroll(this.$refs.wrapper, {
       observeDOM: true,
       observeImage: true,

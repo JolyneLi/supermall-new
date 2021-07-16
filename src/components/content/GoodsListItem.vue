@@ -1,6 +1,10 @@
 <template>
-  <div class="goods-item" @click="pushdetail">
-    <img :src="obj.show.img" alt="" @load="imgload" />
+  <div
+    class="goods-item"
+    @click="pushdetail"
+    v-if="this.obj.image || this.obj.show.img"
+  >
+    <img :src="showdata" alt="" @load="imgload" />
     <div class="goods-info">
       <p>{{ obj.title }}</p>
       <span class="price">{{ obj.price }}</span>
@@ -20,7 +24,12 @@ export default {
       },
     },
   },
-
+  computed: {
+    // 传入不同的对象 但是图片的名称不同 则选用与%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    showdata() {
+      return this.obj.image || this.obj.show.img;
+    },
+  },
   methods: {
     imgload() {
       // console.log("11")

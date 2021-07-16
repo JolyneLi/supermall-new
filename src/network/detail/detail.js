@@ -5,8 +5,15 @@ export function detailApi(iid) {
     method: "get",
     url: "/detail",
     params: {
-      iid: iid,
+      iid,
     },
+  });
+}
+
+export function getRecommendApi() {
+  return request({
+    url: "/recommend",
+    method: "get",
   });
 }
 

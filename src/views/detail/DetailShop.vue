@@ -9,7 +9,7 @@
     <div class="shopdata">
       <div class="data-1">
         <div>
-          {{ shop.sells }}
+          {{ shop.sells | numfilters }}
         </div>
         <div>总销量</div>
       </div>
@@ -20,7 +20,7 @@
         <div>全部宝贝</div>
       </div>
       <div class="data-3">
-        <table>
+        <table class="table">
           <tr v-for="(item, i) in shop.score" :key="i">
             <td>{{ item.name }}</td>
             <td :class="[item.isBetter == true ? 'activered' : 'activegreen']">
@@ -50,6 +50,15 @@ export default {
     shop: {
       type: Object,
       default: () => {},
+    },
+  },
+  filters: {
+    numfilters(value) {
+      if (value < 10000) {
+        return value;
+      } else {
+        return (value / 10000).toFixed(2) + "万";
+      }
     },
   },
 };
@@ -99,27 +108,23 @@ export default {
 
 .shopdata .data-3 {
   margin-left: 15px;
-  /*text-align: center;*/
 }
 
-.shopdata .data-3 table {
-  /*width: 120px;*/
+table {
+  font-size: 16px;
 }
 
 .shopdata .data-3 tr {
-  /*display: block;*/
-  /*margin-bottom: 4px;*/
 }
 
-.shopdata .data-3 td {
-  /*display: block;*/
-  padding: 4px;
+table td:nth-child(n):not(:last-child) {
+  padding: 5px;
+  /*height: 30px;*/
 }
 
-/*.shopdata .data-3{*/
-/*  margin-left: 20px;*/
-/*  text-align: center;*/
-/*}*/
+.shopdata .data-3 td:nth-child(1) {
+  padding-right: 10px;
+}
 
 .activered {
   color: red;

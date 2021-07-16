@@ -4,9 +4,9 @@
     <select-control
       :selectdata="['流行', '新品', '精选']"
       @selecti="selecti"
-      ref="selectRef"
       class="selectcontrol"
       v-show="aaa"
+      ref="topselectRef"
     ></select-control>
 
     <in-scroll
@@ -46,6 +46,7 @@ import SelectControl from "../../components/content/SelectControl";
 import GoodsList from "../../components/content/GoodsList";
 import InScroll from "../../components/content/InScroll";
 import Topicon from "../../components/content/Topicon";
+import { debounce } from "components/common/utils.js";
 
 import HomeSwiper from "./homechild/HomeSwiper";
 import HomeRecommend from "./homechild/HomeRecommend";
@@ -95,6 +96,8 @@ export default {
       selectoffsettop: 0,
       aaa: "",
       b: "",
+      // 离开home后 goodslist不需要在刷新了 取消刷新
+      homeimgleave: null,
     };
   },
 
@@ -113,15 +116,13 @@ export default {
     this.getHomeGoods("sell");
   },
   mounted() {
-    // this.ts = new BScroll(this.$refs.aaa,{
-    //
-    // })
-    const refresh = this.debounce(this.$refs.iscroll.refresh, 50);
-    this.$bus.$on("imgloadend", () => {
-      // 调用次数过多 性能降低  使用防抖函数
-      // this.$refs.iscroll.bs.refresh()
+    // 调用次数过多 性能降低  使用防抖函数
+    // this.$refs.iscroll.bs.refresh()
+    const refresh = debounce(this.$refs.iscroll.refresh, 100);
+    this.homeimgleave = () => {
       refresh();
-    });
+    };
+    this.$bus.$on("imgloadend", this.homeimgleave);
   },
   activated() {
     /*
@@ -133,26 +134,13 @@ export default {
   deactivated() {
     // bs实例的y属性
     this.b = this.$refs.iscroll.bs.y;
+
+    // 离开home时，取消对事件总线的监听
+    // this.$bus.$off("imgloadend",函数)
+    this.$bus.$off("imgloadend", this.homeimgleave);
   },
   updated() {},
   methods: {
-    /*
-     * 防抖函数
-     *
-     * */
-    debounce(func, delay) {
-      let timer = null;
-      return function (...args) {
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => {
-          func.apply(this, args);
-        }, delay);
-      };
-    },
-    /*
-     * 防抖函数
-     *
-     * */
     getHomeGoods(type) {
       const index = this.goods[type].page + 1;
       getHomeGoodsApi(type, index).then((res) => {
@@ -165,6 +153,10 @@ export default {
     selecti(i) {
       // console.log(typeof i);
       this.mycount = this.arr[i];
+      // ***********************************************************
+      this.$refs.topselectRef.count = i;
+      this.$refs.selectRef.count = i;
+      // ***********************************************************
       // console.log(this.mycount)
       // switch (i) {
       //   case 0:

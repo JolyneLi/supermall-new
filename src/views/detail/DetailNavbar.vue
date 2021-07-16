@@ -34,8 +34,8 @@ export default {
       this.$router.back("/home");
     },
     navdatabotton(i) {
-      console.log(i);
       this.count = i;
+      this.$emit("navdatabotton", i);
     },
   },
 };
