@@ -1,9 +1,11 @@
 <template>
   <div id="infolist">
     <div class="left">
-      <botton :is-checked="item.checked" @click.native="checkClick"></botton>
+      <cate-btn
+        :is-checked="item.checked"
+        @click.native="checkClick"
+      ></cate-btn>
     </div>
-
     <div class="mid">
       <img :src="item.img" alt="" />
     </div>
@@ -19,7 +21,7 @@
 </template>
 
 <script>
-import botton from "./botton";
+import CateBtn from "./CateBtn";
 export default {
   name: "CateInfoList",
   props: {
@@ -28,12 +30,21 @@ export default {
       default: () => {},
     },
   },
+  data() {
+    return {
+      // 用这个就可以实现
+      isshow: true,
+    };
+  },
+  created() {
+    console.log(this.item);
+  },
   components: {
-    botton,
+    CateBtn,
   },
   methods: {
     checkClick() {
-      console.log(this.item.checked);
+      // console.log(this.item.checked);
       this.item.checked = !this.item.checked;
     },
   },

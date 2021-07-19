@@ -1,24 +1,19 @@
 <template>
-  <div>
-    <img
-      src="~assets/img/get.png"
-      class="imgs"
-      :class="{ checkd: isChecked }"
-    />
+  <div class="de">
+    <img src="~assets/img/get.png" class="imgs" :class="{ mynew: isChecked }" />
+    {{ isChecked }}
   </div>
 </template>
 
 <script>
 export default {
-  name: "botton",
+  name: "CateBtn",
   props: {
     isChecked: {
       type: Boolean,
       default: false,
     },
   },
-
-  methods: {},
 };
 </script>
 
@@ -30,7 +25,7 @@ export default {
   border: 2px solid #eeeeee;
   border-radius: 50%;
 }
-.checkd {
+.mynew {
   border-color: orange;
   background-color: orange;
 }

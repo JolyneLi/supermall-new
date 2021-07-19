@@ -1,7 +1,7 @@
 <template>
   <div id="money">
     <div class="aaa">
-      <botton></botton>
+      <cate-btn></cate-btn>
     </div>
     <div class="bbb">全选</div>
     <div class="ccc">已选{{ selectcount }}件,<span>合计:</span></div>
@@ -11,12 +11,12 @@
 </template>
 
 <script>
-import botton from "./botton";
+import CateBtn from "./CateBtn";
 import { mapGetters } from "vuex";
 export default {
   name: "CateMoney",
   components: {
-    botton,
+    CateBtn,
   },
   computed: {
     ...mapGetters(["heji", "selectcount"]),
