@@ -45,7 +45,7 @@ import NavBar from "../../components/common/navbar/NavBar";
 import SelectControl from "../../components/content/SelectControl";
 import GoodsList from "../../components/content/GoodsList";
 import InScroll from "../../components/content/InScroll";
-import Topicon from "../../components/content/Topicon";
+// import Topicon from "../../components/content/Topicon";
 import { debounce } from "components/common/utils.js";
 
 import HomeSwiper from "./homechild/HomeSwiper";
@@ -54,16 +54,19 @@ import HomePopular from "./homechild/HomePopular";
 
 import { getHomedata, getHomeGoodsApi } from "../../network/home/home";
 
+import { backTop } from "components/content/mixin";
+
 // import BScroll from "better-scroll";
 
 export default {
   name: "Home",
+  mixins: [backTop],
   components: {
     NavBar,
     SelectControl,
     GoodsList,
     InScroll,
-    Topicon,
+    // Topicon,
 
     HomeSwiper,
     HomeRecommend,
@@ -92,7 +95,7 @@ export default {
       mycount: "pop",
       arr: ["pop", "new", "sell"],
       ts: null,
-      isTopicon: false,
+      // isTopicon: false,
       selectoffsettop: 0,
       aaa: "",
       b: "",
@@ -127,8 +130,10 @@ export default {
   activated() {
     /*
      * 先刷新
+     *
      * */
     this.$refs.iscroll.refresh();
+    // 保持原来的位置
     this.$refs.iscroll.scrollTo(0, this.b, 0);
   },
   deactivated() {
@@ -171,11 +176,6 @@ export default {
       // }
     },
     topbotton() {
-      // this.$refs.iscroll 组件对象*************
-      // this.$refs.iscroll.mes
-      // console.log(this.$refs.iscroll.mes)
-      // this.$refs.iscroll.bs.scrollTo(0, 0, 500);
-      // 封装下
       this.$refs.iscroll.scrollTo(0, 0, 500);
     },
     // 监听屏幕的滚动

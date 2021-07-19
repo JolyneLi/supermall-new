@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const Home = () => import("../views/home/Home");
-const Cate = () => import("../views/Cate");
+const Cate = () => import("../views/Cate/Cate");
 const Profile = () => import("../views/Profile");
 const Category = () => import("../views/Category/Category");
 const Detail = () => import("../views/detail/Detail");
@@ -24,22 +24,37 @@ const routes = [
   {
     path: "/home",
     component: Home,
+    meta: {
+      footShow: true, // true显示，false隐藏
+    },
   },
   {
     path: "/cate",
     component: Cate,
+    meta: {
+      footShow: true, // true显示，false隐藏
+    },
   },
   {
     path: "/profile",
     component: Profile,
+    meta: {
+      footShow: true, // true显示，false隐藏
+    },
   },
   {
     path: "/category",
     component: Category,
+    meta: {
+      footShow: true, // true显示，false隐藏
+    },
   },
   {
     path: "/detail/:iid",
     component: Detail,
+    meta: {
+      footShow: false, // true显示，false隐藏
+    },
   },
 ];
 

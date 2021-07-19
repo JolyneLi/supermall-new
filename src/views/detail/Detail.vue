@@ -25,6 +25,14 @@
       <!--      <detail-recommend />-->
       <goods-list :goodlistdata="recommendlist" ref="recommenRef"></goods-list>
     </in-scroll>
+    <detail-botton-bar @addCate="addCate" />
+
+    <!--// 监听组件的根元素的原生事件,组件无法-->
+    <Topicon
+      class="itop"
+      @click.native="topbotton"
+      v-show="isTopicon"
+    ></Topicon>
   </div>
 </template>
 
@@ -43,8 +51,12 @@ import DetailComment from "./DetailComment";
 import GoodsList from "../../components/content/GoodsList";
 import { debounce } from "components/common/utils";
 
+import DetailBottonBar from "./DetailBottonBar";
+import { backTop } from "components/content/mixin";
+
 export default {
   name: "Detail",
+  mixins: [backTop],
   components: {
     DetailNavbar,
     DetailSwiper,
@@ -56,6 +68,7 @@ export default {
     DetailComment,
     // DetailRecommend,
     GoodsList,
+    DetailBottonBar,
   },
   data() {
     return {
@@ -74,6 +87,8 @@ export default {
       newrefresh: null,
       arr: [0, 1, 2, 3],
       currentindex: 0,
+      // 需要添加到购物车的商品信息
+      productinfo: {},
     };
   },
   created() {
@@ -91,6 +106,7 @@ export default {
     // this.$bus.$on("imgloadend", ()=>{
     //   this.navbarlocation.push(this.$refs.recommenRef.$el.offsetTop)
     // });
+    console.log(this.$route);
   },
   updated() {},
   destroyed() {
@@ -178,6 +194,8 @@ export default {
     },
     detailescroll(position) {
       let y = -position.y;
+
+      this.isTopicon = y > 1000;
       if (
         this.currentindex !== 0 &&
         y > 0 &&
@@ -211,14 +229,32 @@ export default {
         // console.log(3);
       }
     },
+    topbotton() {
+      // this.$refs.iscroll 组件对象*************
+      // this.$refs.iscroll.mes
+      // console.log(this.$refs.iscroll.mes)
+      // this.$refs.iscroll.bs.scrollTo(0, 0, 500);
+      // 封装下
+      this.$refs.scrollRef.scrollTo(0, 0, 500);
+    },
+    addCate() {
+      this.productinfo.img = this.swiperdata[0];
+      this.productinfo.title = this.goods.title;
+      this.productinfo.desc = this.goods.desc;
+      this.productinfo.price = this.goods.oldPrice;
+      this.productinfo.iid = this.iid;
+
+      // 添加到vuex的数组中
+      this.$store.dispatch("addCartaction", this.productinfo);
+    },
   },
 };
 </script>
 
 <style scoped>
 #detail {
-  position: relative;
-  z-index: 9;
+  /*position: relative;*/
+  /*z-index: 9;*/
   background-color: white;
   height: 100vh;
 }
@@ -226,7 +262,14 @@ export default {
 /*  */
 /*}*/
 .content {
-  height: calc(100% - 44px);
+  /*这49是后边加的*/
+  height: calc(100% - 44px - 49px);
   overflow: hidden;
+}
+.itop {
+  position: absolute;
+  right: 15px;
+  bottom: 60px;
+  z-index: 1;
 }
 </style>

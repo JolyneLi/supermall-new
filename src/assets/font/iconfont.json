@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5241938",
+      "name": "店铺",
+      "font_class": "dianpu",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "7794570",
+      "name": "收 藏 (2)",
+      "font_class": "shoucang",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "18065160",
+      "name": "服务评价-客服",
+      "font_class": "kefu",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
       "icon_id": "19895770",
       "name": "返 回",
       "font_class": "fanhui",
