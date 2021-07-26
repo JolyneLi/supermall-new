@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1896493",
+      "name": "积分",
+      "font_class": "jifen",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "5628140",
+      "name": "信息",
+      "font_class": "lyq-xinxi",
+      "unicode": "e663",
+      "unicode_decimal": 58979
+    },
+    {
+      "icon_id": "16307929",
+      "name": "会 员1-01",
+      "font_class": "huiyuan-",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "18512188",
+      "name": "我 的 (3)",
+      "font_class": "wode1",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "21217268",
+      "name": "下载",
+      "font_class": "xiazai",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
       "icon_id": "5241938",
       "name": "店铺",
       "font_class": "dianpu",

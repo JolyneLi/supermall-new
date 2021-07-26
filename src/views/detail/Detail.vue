@@ -33,6 +33,7 @@
       @click.native="topbotton"
       v-show="isTopicon"
     ></Topicon>
+    <super-toast />
   </div>
 </template>
 
@@ -53,9 +54,13 @@ import { debounce } from "components/common/utils";
 
 import DetailBottonBar from "./DetailBottonBar";
 import { backTop } from "components/content/mixin";
+import SuperToast from "../../components/common/toast/SuperToast";
+
+import { mapActions } from "vuex";
 
 export default {
   name: "Detail",
+
   mixins: [backTop],
   components: {
     DetailNavbar,
@@ -69,6 +74,7 @@ export default {
     // DetailRecommend,
     GoodsList,
     DetailBottonBar,
+    SuperToast,
   },
   data() {
     return {
@@ -113,6 +119,12 @@ export default {
     this.$bus.$off("imgloadend", this.homeimgleave);
   },
   methods: {
+    // 数组写法
+    ...mapActions(["addCartaction"]),
+    // 对象写法
+    // ...mapActions({
+    //   add:'addCartaction'
+    // }),
     getDetail(k) {
       detailApi(k).then((res) => {
         console.log(res);
@@ -244,8 +256,17 @@ export default {
       this.productinfo.price = this.goods.oldPrice;
       this.productinfo.iid = this.iid;
 
+      this.addCartaction(this.productinfo).then((res) => {
+        // console.log(res)
+        // console.log(this.$toast)
+        this.$toast.show(res, 1500);
+      });
+
       // 添加到vuex的数组中
-      this.$store.dispatch("addCartaction", this.productinfo);
+      // this.$store.dispatch("addCartaction", this.productinfo).then(res =>{
+      //   console.log(res)
+      // })
+      // this.$store.dispatch("addCartaction", this.productinfo)
     },
   },
 };

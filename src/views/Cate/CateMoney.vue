@@ -1,7 +1,7 @@
 <template>
   <div id="money">
     <div class="aaa">
-      <cate-btn></cate-btn>
+      <cate-btn :is-checked="isShow" @click.native="checkStatus"></cate-btn>
     </div>
     <div class="bbb">全选</div>
     <div class="ccc">已选{{ selectcount }}件,<span>合计:</span></div>
@@ -19,7 +19,42 @@ export default {
     CateBtn,
   },
   computed: {
-    ...mapGetters(["heji", "selectcount"]),
+    ...mapGetters(["heji", "selectcount", "showCartlist"]),
+    // 这isShoW如果返回的是True  则表示全部选中
+    isShow() {
+      if (this.showCartlist == 0) return false;
+      // find函数￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥
+      //  return !this.showCartlist.find(item =>{
+      //   return !item.checked
+      // })
+      // 数组遍历￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥
+      // for( let item of this.showCartlist){
+      //   if(!item.checked) return false
+      // }
+      // return true
+      // filter函数￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥￥
+      // this.showCartlist.filter( item =>{return !item.checked}) 这个就是为false组成的数组
+      return !this.showCartlist.filter((item) => {
+        return !item.checked;
+      }).length;
+    },
+  },
+  mounted() {},
+  methods: {
+    checkStatus() {
+      console.log("ds");
+      // 1.所有项目全选 则点击会全部取消选择
+      // 2.所有项目没有全选或者有几个没有选择 则会使其选择
+      if (this.isShow) {
+        this.showCartlist.forEach((item) => {
+          item.checked = false;
+        });
+      } else {
+        this.showCartlist.forEach((item) => {
+          item.checked = true;
+        });
+      }
+    },
   },
 };
 </script>

@@ -31,10 +31,7 @@ export default {
     },
   },
   data() {
-    return {
-      // 用这个就可以实现
-      isshow: true,
-    };
+    return {};
   },
   created() {
     console.log(this.item);

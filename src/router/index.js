@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 const Home = () => import("../views/home/Home");
 const Cate = () => import("../views/Cate/Cate");
-const Profile = () => import("../views/Profile");
+const Profile = () => import("../views/Profile/Profile");
 const Category = () => import("../views/Category/Category");
 const Detail = () => import("../views/detail/Detail");
 

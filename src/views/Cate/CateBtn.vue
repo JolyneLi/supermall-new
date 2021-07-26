@@ -1,7 +1,6 @@
 <template>
   <div class="de">
     <img src="~assets/img/get.png" class="imgs" :class="{ mynew: isChecked }" />
-    {{ isChecked }}
   </div>
 </template>
 
@@ -14,6 +13,7 @@ export default {
       default: false,
     },
   },
+  methods: {},
 };
 </script>
 

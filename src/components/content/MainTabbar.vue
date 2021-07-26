@@ -32,4 +32,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.icon-qicheqianlian-select-copy {
+  font-size: 20px;
+}
+</style>

@@ -13,9 +13,13 @@ const mutations = {
     payload.count = payload.count + 1;
   },
   addCart(state, payload) {
-    payload.count = 1;
-    payload.checked = true;
+    // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+    Vue.set(payload, "count", 1);
+    // payload.count = 1;
+    Vue.set(payload, "checked", true);
+    // payload.checked = true;
     state.cartlist.push(payload);
+    // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
   },
 };
 
@@ -25,15 +29,19 @@ export default new Vuex.Store({
   getters,
   actions: {
     addCartaction(context, payload) {
-      const result = context.state.cartlist.find((item) => {
-        return item.iid == payload.iid;
-      });
+      return new Promise((resolve) => {
+        const result = context.state.cartlist.find((item) => {
+          return item.iid == payload.iid;
+        });
 
-      if (result) {
-        context.commit("addCounter", payload);
-      } else {
-        context.commit("addCart", payload);
-      }
+        if (result) {
+          context.commit("addCounter", payload);
+          return resolve("数量 + 1");
+        } else {
+          context.commit("addCart", payload);
+          return resolve("添加到购物车");
+        }
+      });
     },
   },
   modules: {},
