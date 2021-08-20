@@ -67,3 +67,137 @@ new Vue({
 //
 //
 // console.log(arr1)
+
+// class Super {
+//   constructor(mingzi) {
+//     this.uname = mingzi;
+//   }
+// }
+//
+// var aa = new Super("徐素婧");
+//
+// console.log(aa.uname);
+//
+// Vue.filter("slve", function (value) {
+//   return value * 2;
+// });
+
+// setTimeout(() => {
+//   console.log("你好");
+// }, 1000);
+
+// new Promise((resolve) => {
+//
+//   setTimeout(() => {
+//     resolve();
+//   }, 1000);
+// })
+//   .then(() => {
+//     console.log("你好");
+//     console.log("你好");
+//     console.log("你好");
+//     console.log("你好");
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve();
+//       }, 1000);
+//     });
+//   })
+//   .then(() => {
+//     console.log("随便");
+//     console.log("随便");
+//     console.log("随便");
+//     console.log("随便");
+//     return new Promise((resolve) => {
+//       setTimeout(() => {
+//         resolve();
+//       });
+//     });
+//   })
+//   .then(() => {
+//     console.log("可以");
+//     console.log("可以");
+//     console.log("可以");
+//     console.log("可以");
+//   });
+
+// new Promise((resolve,reject)=>{
+//   setTimeout(()=>{
+//     // resolve('参数')
+//     reject("错误")
+//   },1000)
+// }).then((data)=>{
+//   console.log(data)
+// }).catch(err=>{
+//   console.log(err);
+// })
+
+// let a = {
+//   uname:"lady"
+// }
+//
+// function fn() {
+//   // console.log(a)
+//   console.log(this)
+// }
+
+// fn.call()
+var arr = [
+  1,
+  1,
+  "true",
+  "true",
+  true,
+  true,
+  15,
+  15,
+  false,
+  false,
+  undefined,
+  undefined,
+  null,
+  null,
+  NaN,
+  NaN,
+  "NaN",
+  "NaN",
+  0,
+  0,
+  "a",
+  "a",
+  {},
+  {},
+];
+
+// const data = new Set(arr)
+//
+// console.log(Array.from(data))
+
+// function unique(arr) {
+//   if (!Array.isArray(arr)) {
+//     console.log("类型错误");
+//     return;
+//   }
+//   var newarr = [];
+//   for (var i = 0; i < arr.length; i++) {
+//     if (arr.indexOf(arr[i]) === i) {
+//       newarr.push(arr[i]);
+//     }
+//   }
+//   return newarr;
+// }
+// console.log(unique(arr));
+
+function unique(arr) {
+  if (!Array.isArray(arr)) {
+    console.log("类型错误");
+    return;
+  }
+
+  // var newarr = [arr[0]]
+  // arr.filter(item=>{
+  //   if(item)
+  // })
+}
+
+console.log(unique(arr));

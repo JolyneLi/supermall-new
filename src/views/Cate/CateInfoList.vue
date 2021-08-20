@@ -79,6 +79,7 @@ export default {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+
   padding-left: 20px;
 }
 .right div {

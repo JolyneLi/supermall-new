@@ -51,17 +51,4 @@ export default {
 .avtiveclass {
   color: #ff8198;
 }
-/*.icon-fanhui{*/
-/*  position: relative;*/
-/*}*/
-/*.icon-fanhui::after {*/
-
-/*  content: "";*/
-/*  width: 44px;*/
-/*  height: 44px;*/
-/*  background: #666666;*/
-/*  display: block;*/
-/*  position: absolute;*/
-/*  top:0*/
-/*}*/
 </style>

@@ -192,7 +192,7 @@ export default {
     swiperimgload() {
       // console.log(this.$refs.selectRef.$el);
       // 轮播图图片加载完成load 传入自定义事件swiperimgload  home组件接受 拿到选择框的dom节点（$el） 得到最终的高度
-      console.log(this.$refs.selectRef.$el.offsetTop);
+      // console.log(this.$refs.selectRef.$el.offsetTop);
       this.selectoffsettop = this.$refs.selectRef.$el.offsetTop;
     },
   },
